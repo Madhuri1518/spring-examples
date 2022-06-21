@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="fortuneService"
+          class="com.zemoso.spring_examples.HappyFortuneService"></bean>
+    <bean id="coach"
+          class="com.zemoso.spring_examples.BaseballCoach">
+        <constructor-arg ref="fortuneService" />
+    </bean>
+
+    <bean id="scopedBeanCoach"
+          class="com.zemoso.spring_examples.TrackCoach"
+          scope="prototype"
+          init-method="doMyStartupStuff"
+          destroy-method="doMyCleanupStuffYoYo">
+
+    </bean>
+
+<!--    <bean id="lifeCycleCoach"-->
+<!--          class="com.zemoso.spring_examples.TrackCoach"-->
+<!--          init-method="doMyStartupStuff" destroy-method="doMyCleanupStuffYoYo">-->
+<!--        <constructor-arg ref="fortuneService" />-->
+<!--    </bean>-->
+</beans>
