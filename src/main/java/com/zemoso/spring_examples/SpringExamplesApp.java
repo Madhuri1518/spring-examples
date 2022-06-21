@@ -39,7 +39,20 @@ public class SpringExamplesApp {
 
 //        //==========life cycle methods
 //        Coach lifeCycleCoach = context.getBean("lifeCycleCoach", Coach.class);
-
         context.close();
+
+        //============Component scanning
+        ClassPathXmlApplicationContext context1 = new ClassPathXmlApplicationContext("annotationConfiguration.xml");
+
+        Coach tennisCoach = context1.getBean("coachTe", Coach.class);
+        System.out.println("component scan coach -"+tennisCoach.getDailyWorkout());
+        //==========annotation - field/constructor/setter/method injection
+        System.out.println("annotation config coach(field injection) -"+tennisCoach.getDailyFortune());
+
+        //===========scope using annotation
+        System.out.println("\nMemory location for first ref: " + tennisCoach);
+        tennisCoach = context1.getBean("coachTe", Coach.class);
+        System.out.println("\nMemory location for first ref: " + tennisCoach);
+
     }
 }
