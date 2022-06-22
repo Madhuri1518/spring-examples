@@ -1,9 +1,16 @@
 package com.zemoso.spring_examples;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class BaseballCoach implements Coach {
 
+	@Value("${coach.email}")
+	private String email;
+
+	@Value("${coach.team}")
+	private String team;
 	FortuneService fortuneService;
-	BaseballCoach(FortuneService fortuneService){
+	public BaseballCoach(FortuneService fortuneService){
 		this.fortuneService = fortuneService;
 	}
 	@Override
@@ -16,6 +23,13 @@ public class BaseballCoach implements Coach {
 		return fortuneService.getFortune();
 	}
 
+	public String getEmail(){
+		return email;
+	}
+
+	public String getTeam(){
+		return team;
+	}
 }
 
 
